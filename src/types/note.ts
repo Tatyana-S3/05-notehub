@@ -6,3 +6,9 @@ export interface Note {
   content: string;
   tag: NoteTag;
 }
+
+export interface CreateNote {
+  title: string;
+  content: string;
+  tag: NoteTag;
+}
