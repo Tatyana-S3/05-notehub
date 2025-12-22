@@ -14,6 +14,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
+import toast from "react-hot-toast";
 
 function App() {
   const [page, setPage] = useState<number>(1);
@@ -35,10 +36,11 @@ function App() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       setIsOpenModal(false);
+      toast.success("Note created successfully!");
     },
     onError: (error) => {
-      alert("Ошибка при создании заметки. Попробуйте позже.");
-      console.error(error);
+      console.error("Create note error:", error);
+      toast.error("Failed to create note. Please try again.");
     },
   });
 

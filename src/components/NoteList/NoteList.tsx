@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Note } from "../../types/note";
 import css from "./NoteList.module.css";
 import { deleteNote } from "../../services/noteService";
+import toast from "react-hot-toast";
 
 interface NoteListProps {
   notes: Note[];
@@ -13,9 +14,13 @@ function NoteList({ notes }: NoteListProps) {
     mutationFn: deleteNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
+      toast.success("Note deleted successfully!");
     },
-    onError: () => {},
+    onError: () => {
+      toast.error("Failed to delete note.");
+    },
   });
+
   return (
     <ul className={css.list}>
       {notes.map((note) => (
