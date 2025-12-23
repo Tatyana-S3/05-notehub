@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-query";
 import { createNote, fetchNotes } from "../../services/noteService";
 import Loader from "../Loader/Loader";
-import Paginate from "../Pagination/Pagination";
+import Pagination from "../Pagination/Pagination";
 import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
 import Modal from "../Modal/Modal";
@@ -64,7 +64,7 @@ function App() {
         <SearchBox onSearch={updateSearchQuery} value={searchQuery} />
 
         {totalPages > 1 && (
-          <Paginate
+          <Pagination
             totalPages={totalPages}
             page={page}
             handlePageChange={handlePageChange}
